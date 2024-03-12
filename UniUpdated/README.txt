@@ -1,3 +1,48 @@
+*************
+We have to deploy 2 contracts first one is Factory.sol
+second we have to deploy UniswapV2Router02.sol,
+Then deploy our 2 erc20 tokens
+from erc20 tokens approve function copy address of contract router.sol and appvove amount to tokens we have to approve to add liquidity,
+In router.sol add liquidity,
+then swap bown tokens ['address1','address2']
+** While deploying factory project we have to add this function-
+
+function pairCodeHash() external pure returns (bytes32) {
+return keccak256(type(UniswapV2Pair).creationCode);
+}
+
+Then after take paircodeHash from this function and add it to UniswapV2Library.sol In router folder/Library
+
+function pairFor(address factory, address tokenA, address tokenB) internal pure returns (address pair) {
+(address token0, address token1) = sortTokens(tokenA, tokenB);
+pair = address(uint(keccak256(abi.encodePacked(
+hex'ff',
+factory,
+keccak256(abi.encodePacked(token0, token1)),
+hex'072d35f9bc3cb80b818c42783e425d962981fb73e4fadcd876a1febefc7b87b4' // init code hash
+))));
+
+*********************************************************************************************************************8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 REMIX DEFAULT WORKSPACE
 
 Remix default workspace is present when:
